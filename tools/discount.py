@@ -1,5 +1,3 @@
-# tools/discount.py
-
 import asyncio
 
 async def discount_checker(base_price, promo_code):

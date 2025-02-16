@@ -35,11 +35,17 @@ async def main():
     print("Response:", response4)
 
     # Task E: Multi-Tool Combined Query
-    query5 = """I'm looking for a black leather handbag under $100 that:
-    1. Can be delivered within 5 days
+    query5 = """
+    I'm looking for a floral skirt under $40 in size S. Can you check if it's in stock and if I can apply a discount code 'SAVE10'?
+    Additionally, I need white sneakers (size 8) for under $70 that can arrive by Friday.
+    I also found a 'casual denim jacket' at $80 on SiteA. Are there any better deals available?
+    Furthermore, I want to buy a cocktail dress from SiteB, but only if returns are hassle-free. Do they accept returns?
+    Lastly, I'm looking for a black leather handbag under $100 that:
+    1. Can I apply a discount code 'SAVE10'?
     2. Has a good return policy
     3. Might have available discounts
-    4. Is the best price compared to other stores"""
+    4. Do they accept returns?
+    """
     print("\n=== Task E: Multi-Tool Query ===")
     print("Query:", query5)
     response5 = await agent.respond(query5)
@@ -47,3 +53,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    

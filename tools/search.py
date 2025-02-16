@@ -1,5 +1,3 @@
-# tools/search.py
-
 import asyncio
 
 async def ecommerce_search_aggregator(product_name, color=None, price_range=None, size=None):
@@ -10,7 +8,7 @@ async def ecommerce_search_aggregator(product_name, color=None, price_range=None
         {"name": "white sneakers", "color": "white", "price": 65, "size": "8", "in_stock": True, "site": "SiteC"},
         {"name": "casual denim jacket", "color": "blue", "price": 80, "size": "M", "in_stock": True, "site": "SiteA"},
         {"name": "cocktail dress", "color": "black", "price": 120, "size": "L", "in_stock": True, "site": "SiteB"},
-        {"name": "black leather handbag", "color": "black", "price": 90, "size": "One Size", "in_stock": True, "site": "SiteD"},  # Added product
+        {"name": "black leather handbag", "color": "black", "price": 90, "size": "One Size", "in_stock": True, "site": "SiteD"},
     ]
     
     results = []

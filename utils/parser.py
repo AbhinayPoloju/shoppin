@@ -1,5 +1,3 @@
-# utils/parser.py
-
 import re
 from datetime import datetime, timedelta
 
@@ -10,7 +8,7 @@ def extract_parameters(query):
     params = {}
     
     # Extract product name
-    product_match = re.search(r"floral skirt|white sneakers|casual denim jacket|cocktail dress", query, re.IGNORECASE)
+    product_match = re.search(r"floral skirt|white sneakers|casual denim jacket|cocktail dress|black leather handbag", query, re.IGNORECASE)
     if product_match:
         params["product_name"] = product_match.group(0).lower()
     

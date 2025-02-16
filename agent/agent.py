@@ -1,5 +1,3 @@
-# agent/agent.py
-
 import json
 import asyncio
 from tools.search import ecommerce_search_aggregator
@@ -86,6 +84,7 @@ class ShoppingAgent:
         elif tool_name == "competitor":
             return {
                 "product_name": params.get("product_name"),
+                "price": params.get("price_range"),
             }
         elif tool_name == "returns":
             return {

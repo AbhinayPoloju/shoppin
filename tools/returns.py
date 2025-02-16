@@ -1,5 +1,3 @@
-# tools/returns.py
-
 import asyncio
 
 async def return_policy_checker(site):

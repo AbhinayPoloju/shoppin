@@ -1,5 +1,3 @@
-# tools/shipping.py
-
 from datetime import datetime, timedelta
 import random
 
