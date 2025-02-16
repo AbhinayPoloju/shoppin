@@ -29,8 +29,8 @@ class ShoppingAgent:
         logger.info(f"Received query: {query}")
         
         # Parse the query and get reasoning steps
-        tool_name, reasoning_steps = self.reasoning_engine.parse_query(query)
-        if not tool_name:
+        tool_names, reasoning_steps = self.reasoning_engine.parse_query(query)
+        if not tool_names:
             logger.warning("Could not understand the query.")
             return "I'm sorry, I couldn't understand your request. Please try again."
         
@@ -38,21 +38,23 @@ class ShoppingAgent:
         params = extract_parameters(query)
         logger.info(f"Extracted parameters: {params}")
         
-        # Filter parameters based on the tool being invoked
-        filtered_params = self.filter_parameters(tool_name, params)
-        logger.info(f"Filtered parameters: {filtered_params}")
+        # Invoke tools asynchronously and collect results
+        responses = {}
+        for tool_name in tool_names:
+            try:
+                # Filter parameters based on the tool being invoked
+                filtered_params = self.filter_parameters(tool_name, params)
+                logger.info(f"Filtered parameters for {tool_name}: {filtered_params}")
+                
+                # Invoke the tool asynchronously
+                tool_output = await self.tools[tool_name](**filtered_params)
+                responses[tool_name] = tool_output
+            except Exception as e:
+                logger.error(f"Tool execution failed for {tool_name}: {e}")
+                responses[tool_name] = {"error": f"Tool execution failed: {e}"}
         
-        # Invoke the tool asynchronously
-        try:
-            tool_output = await self.tools[tool_name](**filtered_params)
-        except Exception as e:
-            logger.error(f"Tool execution failed: {e}")
-            return f"An error occurred while processing your request: {e}"
-        
-        logger.info(f"Tool output: {tool_output}")
-        
-        # Integrate the output into a coherent response
-        response = self.format_response(tool_name, tool_output, reasoning_steps)
+        # Integrate the outputs into a coherent response
+        response = self.format_response(responses, reasoning_steps)
         logger.info(f"Generated response: {response}")
         
         # Store the interaction in memory
@@ -91,29 +93,17 @@ class ShoppingAgent:
             }
         return {}
 
-    def format_response(self, tool_name, tool_output, reasoning_steps):
-        """Format the tool output and reasoning steps into a user-friendly response."""
-        if "error" in tool_output:
-            return f"An error occurred: {tool_output['error']}"
-        
-        # Include reasoning steps in the response
+    def format_response(self, responses, reasoning_steps):
+        """Format the tool outputs and reasoning steps into a user-friendly response."""
         response = "Reasoning Steps:\n"
         for step in reasoning_steps:
             response += f"- {step}\n"
         
-        # Add tool-specific output
-        if tool_name == "search":
-            products = tool_output
-            response += f"\nI found the following products: {json.dumps(products, indent=2)}"
-        elif tool_name == "shipping":
-            response += f"\nShipping details: {json.dumps(tool_output, indent=2)}"
-        elif tool_name == "discount":
-            response += f"\nFinal price after discount: {tool_output['final_price']}"
-        elif tool_name == "competitor":
-            response += f"\nHere are the competitor prices: {json.dumps(tool_output, indent=2)}"
-        elif tool_name == "returns":
-            response += f"\nReturn policy: {tool_output['policy']}"
-        else:
-            response += "\nHere's what I found: " + json.dumps(tool_output, indent=2)
+        response += "\nResults:\n"
+        for tool_name, tool_output in responses.items():
+            if "error" in tool_output:
+                response += f"\n{tool_name.capitalize()} Error: {tool_output['error']}"
+            else:
+                response += f"\n{tool_name.capitalize()} Results: {json.dumps(tool_output, indent=2)}"
         
         return response
