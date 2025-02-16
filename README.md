@@ -39,7 +39,7 @@ src/
     └── logger.py       # Logging and monitoring
 ```
 
-## 🛠 Tools
+## Tools
 
 1. **E-Commerce Search Aggregator**
    - Searches products across multiple platforms
