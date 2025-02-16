@@ -22,8 +22,8 @@ def extract_parameters(query):
     if size_match:
         params["size"] = size_match.group(1).upper()
     
-    # Extract promo code
-    promo_match = re.search(r"discount code (\w+)", query, re.IGNORECASE)
+    # Extract promo code (updated regex to handle quotes)
+    promo_match = re.search(r"discount code ['\"]?(\w+)['\"]?", query, re.IGNORECASE)
     if promo_match:
         params["promo_code"] = promo_match.group(1).upper()
     

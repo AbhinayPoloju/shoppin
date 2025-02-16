@@ -117,14 +117,7 @@ async def main():
 
     # Task E: Multi-Tool Combined Query
     query5 = """
-    I'm looking for a floral skirt under $40 in size S. 
-    1. Can I apply a discount code 'SAVE10'?
-    2. Has a good return policy
-    3. Might have available discounts
-    4. Do they accept returns?
-    5. Any Better Deals?
-    6. Can arrive by Friday?
-     
+    Find a floral skirt under $40 in size S that can arrive by Friday.Check if there are any better deals.Is it in stock, and can I apply a discount code 'SAVE10'?Returns should be hassle-free. Do they accept returns? 
     """
     print("\n=== Task E: Multi-Tool Query ===")
     print("Query:", query5)
