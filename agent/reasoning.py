@@ -30,7 +30,7 @@ class ReasoningEngine:
             self.reasoning_steps.append("Identified intent: Apply discount codes.")
         
         # Check for competitor intent
-        if "compare" in query.lower() or "competitor" in query.lower():
+        if "compare" in query.lower() or "competitor" in query.lower() or "better deals" in query.lower():
             tool_names.append("competitor")
             self.reasoning_steps.append("Identified intent: Compare prices across competitors.")
         

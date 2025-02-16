@@ -83,8 +83,7 @@ class ShoppingAgent:
             }
         elif tool_name == "competitor":
             return {
-                "product_name": params.get("product_name"),
-                "price": params.get("price_range"),
+                "product_name": params.get("product_name")
             }
         elif tool_name == "returns":
             return {

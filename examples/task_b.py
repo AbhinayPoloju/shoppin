@@ -1,8 +1,6 @@
 # examples/task_b.py
 
 import asyncio
-import sys
-sys.path.append('/export/home/vivian/svarah/shoppin')
 from agent.agent import ShoppingAgent
 
 async def run_task_b():

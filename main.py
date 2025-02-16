@@ -36,15 +36,7 @@ async def main():
 
     # Task E: Multi-Tool Combined Query
     query5 = """
-    I'm looking for a floral skirt under $40 in size S. Can you check if it's in stock and if I can apply a discount code 'SAVE10'?
-    Additionally, I need white sneakers (size 8) for under $70 that can arrive by Friday.
-    I also found a 'casual denim jacket' at $80 on SiteA. Are there any better deals available?
-    Furthermore, I want to buy a cocktail dress from SiteB, but only if returns are hassle-free. Do they accept returns?
-    Lastly, I'm looking for a black leather handbag under $100 that:
-    1. Can I apply a discount code 'SAVE10'?
-    2. Has a good return policy
-    3. Might have available discounts
-    4. Do they accept returns?
+    Find a floral skirt under $40 in size S that can arrive by Friday.Check if there are any better deals.Is it in stock, and can I apply a discount code 'SAVE10'?Returns should be hassle-free. Do they accept returns? 
     """
     print("\n=== Task E: Multi-Tool Query ===")
     print("Query:", query5)
