@@ -1,8 +1,10 @@
 # examples/task_e.py
 
 import asyncio
+import os
 import sys
-sys.path.append('/export/home/vivian/svarah/shoppin')
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
 from agent.agent import ShoppingAgent
 
 async def run_task_e():
