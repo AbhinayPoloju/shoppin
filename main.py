@@ -7,7 +7,7 @@ async def main():
     agent = ShoppingAgent()
     #wrote these queries to demonstrate the tasks in assignment, haven't used any llm's/nlp for returning responses. just returning json, i like this guy jason
     # Task A: Basic Item Search + Price Constraint
-    query1 = "Find a floral skirt under $45 in size S. Is it in stock, and can I apply a discount code 'SPICY69'?"
+    query1 = "Find a floral skirt under $45 in size S. Is it in stock, and can I apply a discount code 'SILKY69'?"
     print("\n=== Task A: Basic Search + Discount ===")
     print("Query:", query1)
     response1 = await agent.respond(query1)

@@ -13,7 +13,7 @@ async def discount_checker(base_price: float, promo_code: str) -> Dict:
 
     # validate inputs
     if base_price < 0:
-        return {"error": "Base price cannot be negative"}
+        return {"error": "bro, you came for shoppin not robbery"}
     
     promo_code = promo_code.strip().upper()  # normalizing promo code
     discount_percentage = DISCOUNTS.get(promo_code, 0)  # get discount percentage

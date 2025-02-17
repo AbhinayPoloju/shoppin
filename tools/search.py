@@ -17,9 +17,9 @@ async def ecommerce_search_aggregator(
     async with aiohttp.ClientSession() as session:
         # mock api calls 
         tasks = [
-            _mock_api_call(session, "SiteA", product_name, color, price_range, size),
-            _mock_api_call(session, "SiteB", product_name, color, price_range, size),
-            _mock_api_call(session, "SiteC", product_name, color, price_range, size),
+            _mock_api_call(session, "Amazon", product_name, color, price_range, size),
+            _mock_api_call(session, "Flipkart", product_name, color, price_range, size),
+            _mock_api_call(session, "H&M", product_name, color, price_range, size),
         ]
         results = await asyncio.gather(*tasks)
     

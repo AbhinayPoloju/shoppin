@@ -32,11 +32,11 @@ class ShoppingAgent:
             logger.warning("Could not understand the query.")
             return "I'm sorry, I couldn't understand your request. Please try again."
         
-        # Extract parameters using the parser utility
+        # extracting params using parser utility
         params = extract_parameters(query)
         logger.info(f"Extracted parameters: {params}")
         
-        # Invoke tools asynchronously and collect results
+        # collecting results by invoking tools
         responses = {}
         for tool_name in tool_names:
             try:

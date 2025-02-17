@@ -9,29 +9,29 @@ async def competitor_price_comparison(product_name: str):
     # just randomly added some data to display something for you when you call this func
     product_prices = {
         "floral skirt": [
-            {"site": "SiteA", "price": 35},
-            {"site": "SiteB", "price": 32},
-            {"site": "SiteC", "price": 38},
+            {"site": "Amazon", "price": 35},
+            {"site": "Flipkart", "price": 32},
+            {"site": "H&M", "price": 38},
         ],
         "white sneakers": [
-            {"site": "SiteA", "price": 70},
-            {"site": "SiteB", "price": 65},
-            {"site": "SiteC", "price": 75},
+            {"site": "Amazon", "price": 70},
+            {"site": "Flipkart", "price": 65},
+            {"site": "H&M", "price": 75},
         ],
         "casual denim jacket": [
-            {"site": "SiteA", "price": 80},
-            {"site": "SiteB", "price": 75},
-            {"site": "SiteC", "price": 85},
+            {"site": "Amazon", "price": 80},
+            {"site": "Flipkart", "price": 75},
+            {"site": "H&M", "price": 85},
         ],
         "cocktail dress": [
-            {"site": "SiteA", "price": 120},
-            {"site": "SiteB", "price": 110},
-            {"site": "SiteC", "price": 130},
+            {"site": "Amazon", "price": 120},
+            {"site": "Flipkart", "price": 110},
+            {"site": "H&M", "price": 130},
         ],
         "black leather handbag": [
-            {"site": "SiteA", "price": 150},
-            {"site": "SiteB", "price": 140},
-            {"site": "SiteC", "price": 160},
+            {"site": "Amazon", "price": 150},
+            {"site": "Flipkart", "price": 140},
+            {"site": "H&M", "price": 160},
         ],
     }
     
