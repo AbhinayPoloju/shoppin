@@ -14,17 +14,22 @@ async def discount_checker(base_price: float, promo_code: str) -> Dict:
     # validate inputs
     if base_price < 0:
         return {"error": "bro, you came for shoppin not robbery"}
-    
     promo_code = promo_code.strip().upper()  # normalizing promo code
     discount_percentage = DISCOUNTS.get(promo_code, 0)  # get discount percentage
     
     discount_amount = round((base_price * discount_percentage) / 100, 2)  # calculate discount amount
     final_price = round(base_price - discount_amount, 2)  # apply discount
 
-    return {
+    response = {
         "code": promo_code,
         "base_price": base_price,
         "discount_percentage": discount_percentage,
         "discount_amount": discount_amount, 
         "final_price": final_price,
     }
+    
+    #adding some special message for choosin this promo
+    if promo_code == "SILKY69":
+        response["message"] = "bro,you got lucky! u unlocked best promocode!"
+
+    return response
