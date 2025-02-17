@@ -3,7 +3,7 @@ import random
 
 async def return_policy_checker(site: str):
     
-    await asyncio.sleep(random.uniform(0.5, 1.5)) #adding some delay to keep t realistic, 
+    await asyncio.sleep(random.uniform(0.5, 1.5)) #adding some delay to keepi t realistic, 
     
     policies = {
         "Amazon": "30-day free returns! No questions asked, just pure refund joy!(wish this could be true)",

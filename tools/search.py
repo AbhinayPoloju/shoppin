@@ -26,7 +26,7 @@ async def ecommerce_search_aggregator(
     # combining and filtering the results
     valid_results = [result for sublist in results for result in sublist if "error" not in result]
     if not valid_results:
-        return {"error": "No products found matching the criteria."}
+        return {"error": "better choose the floral skirt/white sneakers/casual denim jacket/cocktail dress or black leather handbag,i don't want to add so many items bro.this is just an assignment.."}
     
     # Sort results
     if sort_by == "price":
@@ -86,6 +86,7 @@ async def _mock_api_call(
         {"name": "black leather handbag", "color": "black", "price": 140, "size": "One Size", "in_stock": True, "site": site, "rating": 4.6, "popularity": 87, "promo_available": False},
     ]
     
+
     # adding random price variations
     for product in products:
         base_price = product["price"]
@@ -94,13 +95,14 @@ async def _mock_api_call(
         product["price"] = round(base_price + price_variation, 2)
     
     # filtering products based on the criteria
+    
     filtered_products = []
-    for product in products:
-        if (product["name"].lower() == product_name.lower() and
-            (color is None or product["color"].lower() == color.lower()) and
-            (price_range is None or product["price"] <= price_range) and
-            (size is None or product["size"].lower() == size.lower())):
-            filtered_products.append(product)
+    if (product_name is None or product_name.lower() in product["name"].lower()) and \
+        (color is None or product["color"].lower() == color.lower()) and \
+        (price_range is None or product["price"] <= price_range) and \
+        (size is None or product["size"].lower() == size.lower()):
+        filtered_products.append(product)
+
     
     if not filtered_products:
         return [{"error": f"oops,no products found on {site}.btw, how you doin'? better choose the floral skirt/white sneakers/casual denim jacket/cocktail dress or black leather handbag,i don't want to add so many items bro.this is just an assignment."}]

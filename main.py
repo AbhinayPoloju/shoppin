@@ -45,6 +45,13 @@ async def main():
     response5 = await agent.respond(query5)
     print("Response:", response5)
     
+    query6 = """
+    Find a bag under $50"""
+    print("\n=== Task E: Multi-Tool Query ===")
+    print("Query:", query6)
+    response6 = await agent.respond(query6)
+    print("Response:", response6)
+    
 #if you need more advanced version of this assignment with added features, let me know, I will implement that
 if __name__ == "__main__":
     asyncio.run(main())
