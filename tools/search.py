@@ -11,11 +11,11 @@ async def ecommerce_search_aggregator(
     size: Optional[str] = None,
     sort_by: Optional[str] = "price",
     limit: Optional[int] = 5,
-    promo_code: Optional[str] = None,  # Add promo_code parameter
+    promo_code: Optional[str] = None,  
 ) -> List[Dict]:
     
     async with aiohttp.ClientSession() as session:
-        # Simulate API calls to multiple e-commerce sites
+        # mock api calls 
         tasks = [
             _mock_api_call(session, "SiteA", product_name, color, price_range, size),
             _mock_api_call(session, "SiteB", product_name, color, price_range, size),
@@ -23,7 +23,7 @@ async def ecommerce_search_aggregator(
         ]
         results = await asyncio.gather(*tasks)
     
-    # Combine and filter results
+    # combining and filtering the results
     valid_results = [result for sublist in results for result in sublist if "error" not in result]
     if not valid_results:
         return {"error": "No products found matching the criteria."}
@@ -86,14 +86,14 @@ async def _mock_api_call(
         {"name": "black leather handbag", "color": "black", "price": 140, "size": "One Size", "in_stock": True, "site": site, "rating": 4.6, "popularity": 87, "promo_available": False},
     ]
     
-    # Add random price variations for each site
+    # adding random price variations
     for product in products:
         base_price = product["price"]
-        # Generate a random price variation between -10% and +10% of the base price
+        # generating random price variations upto 10%
         price_variation = random.uniform(-0.1, 0.1) * base_price
         product["price"] = round(base_price + price_variation, 2)
     
-    # Filter products based on criteria
+    # filtering products based on the criteria
     filtered_products = []
     for product in products:
         if (product["name"].lower() == product_name.lower() and
@@ -103,5 +103,5 @@ async def _mock_api_call(
             filtered_products.append(product)
     
     if not filtered_products:
-        return [{"error": f"No products found on {site}."}]
+        return [{"error": f"oops,no products found on {site}.btw, how you doin'? better choose the floral skirt/white sneakers/casual denim jacket/cocktail dress or black leather handbag,i don't want to add so many items bro.this is just an assignment."}]
     return filtered_products

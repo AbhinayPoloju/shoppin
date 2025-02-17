@@ -2,11 +2,12 @@ from datetime import datetime, timedelta
 import random
 
 async def shipping_time_estimator(product_name, size, user_location, delivery_date):
-    """Estimate shipping time and cost with realistic constraints."""
+    
+    #estimating the delivery time
     delivery_date = datetime.strptime(delivery_date, "%Y-%m-%d")
     today = datetime.today()
     if delivery_date < today:
-        return {"error": "Delivery date must be in the future."}
+        return {"error": "delivery will come today, watch rick and morty until then"}
     
     shipping_details = {
         "product_name": product_name,
