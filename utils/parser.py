@@ -28,12 +28,12 @@ def extract_parameters(query):
         params["promo_code"] = promo_match.group(1).upper()
     
     # Extract site (e.g., "SiteA")
-    site_match = re.search(r"Site\w+", query)
+    site_match = re.search(r"(Amazon|Flipkart|H&M|Site\w+)", query, re.IGNORECASE)
     if site_match:
         params["site"] = site_match.group(0)
     else:
-        # Default to SiteA if no site is specified
-        params["site"] = "SiteA"
+        # Default site if none specified
+        params["site"] = "Amazon"
     
     # Extract delivery date (e.g., "by Friday")
     date_match = re.search(r"by (\w+)", query, re.IGNORECASE)

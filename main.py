@@ -21,14 +21,14 @@ async def main():
     print("Response:", response2)
 
     # Task C: Competitor Price Comparison
-    query3 = "I found a 'casual denim jacket' at $80 on SiteA. Any better deals?"
+    query3 = "I found a 'casual denim jacket' at $80 on Amazon. Any better deals?"
     print("\n=== Task C: Price Comparison ===")
     print("Query:", query3)
     response3 = await agent.respond(query3)
     print("Response:", response3)
 
     # Task D: Returns & Policies
-    query4 = "I want to buy a cocktail dress from SiteB, but only if returns are hassle-free. Do they accept returns?"
+    query4 = "I want to buy a cocktail dress from Flipkart, but only if returns are hassle-free. Do they accept returns?"
     print("\n=== Task D: Return Policy ===")
     print("Query:", query4)
     response4 = await agent.respond(query4)
