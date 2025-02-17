@@ -44,6 +44,12 @@ class ShoppingAgent:
                 filtered_params = self.filter_parameters(tool_name, params)
                 logger.info(f"Filtered parameters for {tool_name}: {filtered_params}")
                 
+                # If the tool is "discount" and "search" has already been executed,
+                # use the price from the search results
+                if tool_name == "discount" and "search" in responses:
+                    best_product = responses["search"][0]  # Get the best product (first in the list)
+                    filtered_params["base_price"] = best_product["price"]
+                
                 # Invoke the tool asynchronously
                 tool_output = await self.tools[tool_name](**filtered_params)
                 responses[tool_name] = tool_output
@@ -68,6 +74,8 @@ class ShoppingAgent:
                 "color": params.get("color"),
                 "price_range": params.get("price_range"),
                 "size": params.get("size"),
+                "sort_by": "price",  # Ensure results are sorted by price
+                "limit":4
             }
         elif tool_name == "shipping":
             return {
@@ -78,7 +86,7 @@ class ShoppingAgent:
             }
         elif tool_name == "discount":
             return {
-                "base_price": params.get("price_range", 0),  # Default to 0 if not provided
+                "base_price": None,  # Placeholder, will be updated in `respond`
                 "promo_code": params.get("promo_code"),
             }
         elif tool_name == "competitor":
