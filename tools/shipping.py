@@ -7,7 +7,7 @@ async def shipping_time_estimator(product_name, size, user_location, delivery_da
     delivery_date = datetime.strptime(delivery_date, "%Y-%m-%d")
     today = datetime.today()
     if delivery_date < today:
-        return {"error": "delivery will come today, watch rick and morty until then"}
+        return {"error": "delivery will come today"}
     
     shipping_details = {
         "product_name": product_name,

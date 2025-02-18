@@ -44,7 +44,7 @@ async def competitor_price_comparison(product_name: str):
     # this is not shoppin website, you don't have so may options, choose from what I added bro
     if not prices:
         return {
-            "message": f"oops! no results found for '{product_name}'. this is not shoppin website, you don't have so may options, choose from what I added in code bro"
+            "message": f"oops! no results found for '{product_name}'."
         }
     
     # adding some fluctuations to keep it realistic 
