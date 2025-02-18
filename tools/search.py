@@ -11,22 +11,26 @@ async def ecommerce_search_aggregator(
     size: Optional[str] = None,
     sort_by: Optional[str] = "price",
     limit: Optional[int] = 5,
-    promo_code: Optional[str] = None,  
+    promo_code: Optional[str] = None,
 ) -> List[Dict]:
     
+    # Validate product_name
+    if not product_name:
+        return [{"error": "Product name is required."}]
+    
     async with aiohttp.ClientSession() as session:
-        # mock api calls 
+        # Simulate API calls to multiple e-commerce sites
         tasks = [
-            _mock_api_call(session, "Amazon", product_name, color, price_range, size),
-            _mock_api_call(session, "Flipkart", product_name, color, price_range, size),
-            _mock_api_call(session, "H&M", product_name, color, price_range, size),
+            _mock_api_call(session, "SiteA", product_name, color, price_range, size),
+            _mock_api_call(session, "SiteB", product_name, color, price_range, size),
+            _mock_api_call(session, "SiteC", product_name, color, price_range, size),
         ]
         results = await asyncio.gather(*tasks)
     
-    # combining and filtering the results
+    # Combine and filter results
     valid_results = [result for sublist in results for result in sublist if "error" not in result]
     if not valid_results:
-        return {"error": "better choose the floral skirt/white sneakers/casual denim jacket/cocktail dress or black leather handbag,i don't want to add so many items bro.this is just an assignment.."}
+        return [{"error": "No products found matching the criteria."}]
     
     # Sort results
     if sort_by == "price":
@@ -86,24 +90,22 @@ async def _mock_api_call(
         {"name": "black leather handbag", "color": "black", "price": 140, "size": "One Size", "in_stock": True, "site": site, "rating": 4.6, "popularity": 87, "promo_available": False},
     ]
     
-
-    # adding random price variations
+    # Add random price variations for each site
     for product in products:
         base_price = product["price"]
-        # generating random price variations upto 10%
+        # Generate a random price variation between -10% and +10% of the base price
         price_variation = random.uniform(-0.1, 0.1) * base_price
         product["price"] = round(base_price + price_variation, 2)
     
-    # filtering products based on the criteria
-    
+    # Filter products based on criteria
     filtered_products = []
-    if (product_name is None or product_name.lower() in product["name"].lower()) and \
-        (color is None or product["color"].lower() == color.lower()) and \
-        (price_range is None or product["price"] <= price_range) and \
-        (size is None or product["size"].lower() == size.lower()):
-        filtered_products.append(product)
-
+    for product in products:
+        if (product["name"].lower() == product_name.lower() and
+            (color is None or product["color"].lower() == color.lower()) and
+            (price_range is None or product["price"] <= price_range) and
+            (size is None or product["size"].lower() == size.lower())):
+            filtered_products.append(product)
     
     if not filtered_products:
-        return [{"error": f"oops,no products found on {site}.btw, how you doin'? better choose the floral skirt/white sneakers/casual denim jacket/cocktail dress or black leather handbag,i don't want to add so many items bro.this is just an assignment."}]
+        return [{"error": f"No products found on {site}."}]
     return filtered_products
